@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Editor from "@monaco-editor/react"
 
-const socket = io("http://localhost:5000");
+const socket = io("https://syncforge-58ge.onrender.com");
 
 const LANGUAGE_EXTENSIONS = {
   javascript: ".js",
