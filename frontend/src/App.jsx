@@ -3,7 +3,24 @@ import io from "socket.io-client";
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Editor from "@monaco-editor/react"
 
-const socket = io("http://localhost:5000");
+// Dynamically resolve the backend socket server URL
+const getSocketUrl = () => {
+  if (import.meta.env.VITE_BACKEND_URL) {
+    return import.meta.env.VITE_BACKEND_URL;
+  }
+
+  const { protocol, hostname, port } = window.location;
+
+  // If running on Vite's default dev server port, connect to backend on port 5000
+  if (port === "5173") {
+    return `${protocol}//${hostname}:5000`;
+  }
+
+  // Default to serving origin (e.g. production/built serving)
+  return window.location.origin;
+};
+
+const socket = io(getSocketUrl());
 
 const LANGUAGE_EXTENSIONS = {
   javascript: ".js",
