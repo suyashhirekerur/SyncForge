@@ -16,8 +16,8 @@ const getSocketUrl = () => {
     return `${protocol}//${hostname}:5000`;
   }
 
-  // Default to serving origin (e.g. production/built serving)
-  return window.location.origin;
+  // Default to serving origin (e.g. production/built serving) or the hosted Render URL
+  return window.location.origin || "https://syncforge-58ge.onrender.com";
 };
 
 const socket = io(getSocketUrl());
