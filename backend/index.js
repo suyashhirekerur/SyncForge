@@ -9,6 +9,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
+        "https://syncforge-58ge.onrender.com",
         origin: process.env.CORS_ORIGIN || "*",
         methods: ["GET", "POST"]
     }
